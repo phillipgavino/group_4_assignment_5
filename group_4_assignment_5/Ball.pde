@@ -1,15 +1,15 @@
-class Snowball {
+class Ball {
   PVector pos;
   PVector vel;
   float r;
   color c;
   
-  Snowball(float x, float y, float z, 
-    float vx, float vy, float vz, float _r) {
+  Ball(float x, float y, float z, 
+    float vx, float vy, float vz, float _r, color _c) {
     pos = new PVector(x, y, z);
     vel = new PVector(vx, vy, vz);
     r = _r;
-    c = color(255);
+    c = _c;
   }
   void applyForces(float fx, 
     float fy, float fz) {
@@ -21,16 +21,11 @@ class Snowball {
     pos.z += vel.z;    
   }
   
-  void move(){
-    pushMatrix();
-    translate(pos.x + vel.x, pos.y + vel.y, pos.z + vel.z);
-    popMatrix();
-  }
-  
   void display() {
     fill(c);
     
     pushMatrix();
+    translate(pos.x + vel.x, pos.y + vel.y, pos.z + vel.z);
     sphere(r);
     popMatrix();
   }
