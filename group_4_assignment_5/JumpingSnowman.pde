@@ -14,14 +14,17 @@ class JumpingSnowman {
   float jumpHeight;
   
   float lerpFactor;
-  float fallIncrement;
+  float rotateAmount;
   
   //not set by parameters
+  float fallIncrement;
   float startHeight; 
   boolean ascending;
   float sphereOffset;
+  float currRotation;
+  boolean posRot;
   
-  JumpingSnowman(float x, float y, float z, float r1, float r2, float r3, float jump, float lerp) {
+  JumpingSnowman(float x, float y, float z, float r1, float r2, float r3, float jump, float lerp, float rotation) {
     rootX = x;
     rootY = y;
     rootZ = z;
@@ -33,11 +36,15 @@ class JumpingSnowman {
     jumpHeight = jump;
     startHeight = rootY;
     lerpFactor = lerp;
+    rotateAmount = rotation;
     
     fallIncrement = 1;
     
     sphereOffset = 20;
     ascending = false;
+    
+    currRotation = 0;
+    posRot = true;
   }
   
   void display(){
@@ -67,9 +74,20 @@ class JumpingSnowman {
       sphere(rad3);
     
     popMatrix();
+    
+    //draw arms
+    pushMatrix();
+    fill(142,109,57);
+    
+    translate(rootX, rootY - ((rad1 * 2) + rad2 - sphereOffset), rootZ);
+    rotate(currRotation);
+    box(150,10,20);
+    
+    popMatrix();
   }
   
   void move() {
+    //BODY
     //check whether should be ascending or descending
     if (ascending){
       if (rootY <= jumpHeight + 1) {
@@ -93,6 +111,25 @@ class JumpingSnowman {
     else {
       descend();
     }
+    
+    //ARMS
+    if (posRot) {
+      if (currRotation >= rotateAmount) {
+        posRot = false;
+      }
+    }
+    else {
+      if (currRotation <= -rotateAmount) {
+        posRot = true;
+      }
+    }
+    
+    if (posRot) {
+      currRotation += 0.02;
+    }
+    else {
+      currRotation -= 0.02;
+    }
   }
   
   
@@ -107,6 +144,6 @@ class JumpingSnowman {
     println("descend");
     rootY += fallIncrement;
     
-    fallIncrement *= 1.1;
+    fallIncrement *= (1 + lerpFactor);
   }
 }
