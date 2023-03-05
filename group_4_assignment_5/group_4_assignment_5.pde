@@ -1,5 +1,7 @@
 CircleSnowman snowman2;
 BoxSnowman snowman1;
+Present present;
+
 
 void setup() {
 
@@ -12,6 +14,9 @@ void setup() {
   snowman1 = new BoxSnowman(150.0, 550.0, 0.0, 
     90.0, 60.0, 37.5, 
     350.0, 0.01, 15);
+  present = new Present("GiftBox_obj.obj", 250.0, 400.0, 
+    350.0, 0.2, 0.05, 15, 25, 5, color(212, 175, 55));
+  present.build();
 }
 
 
@@ -25,4 +30,8 @@ void draw() {
 
   snowman2.move();
   snowman2.display();
+  
+  present.display();
+  present.move();
+
 }
