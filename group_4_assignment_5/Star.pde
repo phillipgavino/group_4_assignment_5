@@ -1,5 +1,5 @@
 class Star{
-  float rotate;
+  float rotate_star;
   PShape object;
   float x;
   float y;
@@ -17,19 +17,14 @@ class Star{
     this.radius2 = radius2;
     this.npoints = npoints;
     this.angle_speed = angle_speed;
-    this.rotate = 0;
+    this.rotate_star = 0;
     this.c = c;
-  }
-
-  void rotate_star() {
-    rotateY(rotate);
-    
   }
   
   void display() {
     fill(c);
     pushMatrix();
-    rotateY(rotate);
+    rotateY(rotate_star);
     float angle = TWO_PI / npoints;
     float halfAngle = angle/2.0;
     
@@ -46,6 +41,6 @@ class Star{
     endShape(CLOSE);
     
     popMatrix();
-    rotate += angle_speed;
+    rotate_star += angle_speed;
   }
 }
