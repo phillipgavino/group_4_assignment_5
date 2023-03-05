@@ -6,6 +6,7 @@ Present present;
 void setup() {
 
   size(500, 500, P3D);
+  frameRate(60);
   
   snowman2 = new CircleSnowman(350.0, 450.0, 0.0, 
     60.0, 40.0, 25.0, 
