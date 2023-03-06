@@ -29,7 +29,7 @@ class Present {
   }
   
   void build() {
-    object.rotate(PI);
+    object.rotateX(PI);
   }
   
   void display() {
