@@ -57,7 +57,4 @@ class BoxSnowman extends Snowman {
     //increase RotateAmount to make oscillations happen
     rotateAmount += rotateSpeed;
   }
-
-  
-  
 }
